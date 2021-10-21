@@ -23,4 +23,21 @@ class AdvertCampaign extends Model implements HasMedia
         $this->addMediaCollection(MediaCollection::BANNER)
             ->singleFile();
     }
+
+    /**
+     * Indicates custom attributes to append to model.
+     *
+     * @var array
+     */
+    public $appends = ['banner_images'];
+
+    /**
+     * Get full URL for the advert_campaigns' banner images.
+     *
+     * @return string
+     */
+    public function getBannerImagesAttribute()
+    {
+        return $this->getFirstMediaUrl(MediaCollection::BANNER);
+    }
 }

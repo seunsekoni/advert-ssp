@@ -16,8 +16,8 @@ class CreateAdvertCampaignsTable extends Migration
         Schema::create('advert_campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->float('total_budget');
             $table->float('daily_budget');
             $table->timestamps();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertCampaignController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
@@ -22,3 +23,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('advert-campaigns')->group(function () {
+        Route::get('/', [AdvertCampaignController::class, 'index']);
+        Route::post('/', [AdvertCampaignController::class, 'store']);
+
+        Route::prefix('/{advertCampaign}')->group(function () {
+            Route::get('/', [AdvertCampaignController::class, 'show']);
+            Route::put('/', [AdvertCampaignController::class, 'update']);
+            Route::delete('/', [AdvertCampaignController::class, 'destroy']);
+        });
+    });
+});
