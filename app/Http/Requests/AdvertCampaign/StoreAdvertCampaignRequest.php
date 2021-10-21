@@ -29,7 +29,7 @@ class StoreAdvertCampaignRequest extends FormRequest
             'end_date' => 'required|date',
             'total_budget' => 'required',
             'daily_budget' => 'required',
-            'banner' => 'required|array|min:1',
+            'banner' => 'nullable|array|min:1',
             'banner.*' => 'image|mimes:jpeg,png,jpg',
         ];
     }

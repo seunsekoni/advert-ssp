@@ -45,10 +45,12 @@ class AdvertCampaignController extends Controller
         $advertCampaign->daily_budget = $request->daily_budget;
         $advertCampaign->save();
 
-        $advertCampaign->addMultipleMediaFromRequest(['banner'])
-            ->each(function ($fileAdder) {
-                $fileAdder->toMediaCollection(MediaCollection::BANNER);
-            });
+        if ($request->banner) {
+            $advertCampaign->addMultipleMediaFromRequest(['banner'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection(MediaCollection::BANNER);
+                });
+        }
 
         DB::commit();
 
@@ -90,10 +92,12 @@ class AdvertCampaignController extends Controller
         $advertCampaign->daily_budget = $request->daily_budget;
         $advertCampaign->update();
 
-        $advertCampaign->addMultipleMediaFromRequest(['banner'])
-            ->each(function ($fileAdder) {
-                $fileAdder->toMediaCollection(MediaCollection::BANNER);
-            });
+        if ($request->banner) {
+            $advertCampaign->addMultipleMediaFromRequest(['banner'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection(MediaCollection::BANNER);
+                });
+        }
 
         DB::commit();
 
